@@ -9,5 +9,5 @@ def is_url(url):
 def make_url(url, ext):
 	if ext[0] is '/':
 		return url + ext
-	else: 
+	else:
 		return url + '/' + ext

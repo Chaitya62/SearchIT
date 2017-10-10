@@ -1,7 +1,6 @@
 import re
-import context
 from urllib import request
-from utils.utils import is_url,make_url
+from app.utils.utils import is_url,make_url
 from multiprocessing.dummy import Pool as ThreadPool
 
 
@@ -14,7 +13,7 @@ class Spider:
 		print("Visiting domain : " + self.domain)
 		self.urls = []
 		self.visit()
-	
+
 	def get_domain(self):
 		pattern = r'(http[s]?://[a-zA-Z0-9]+\.[a-zA-Z0-9\-]+\.[a-z]{2,})'
 		result = re.findall(pattern, self.url)
@@ -27,11 +26,11 @@ class Spider:
 				response_obj = request.urlopen(self.url)
 				self.response = str(response_obj.read());
 				self.find_urls(str(self.response))
-			except Exception as e: 
+			except Exception as e:
 				print(e)
-		
+
 			#print(self.urls)
-	
+
 	def find_urls(self, response):
 		url_find_pattern = r'<a href="?\'?([^"\'>]*)'
 		results = re.findall(url_find_pattern, response)
@@ -39,9 +38,9 @@ class Spider:
 			for url in results:
 				if is_url(url):
 					self.urls.append(url)
-				else: 
+				else:
 					self.urls.append(make_url(self.domain, url))
-	
+
 urls= []
 
 def test(url):
@@ -49,7 +48,7 @@ def test(url):
 	ax = Spider(url)
 	urls.extend(ax.urls)
 	return url
-		
+
 
 if __name__ == '__main__':
 	content = ""
