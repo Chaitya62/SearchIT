@@ -1,4 +1,3 @@
-import context
 from  spider.Spider import Spider
 from nltk.tokenize import  word_tokenize
 from bs4 import BeautifulSoup
