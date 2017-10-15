@@ -1,5 +1,4 @@
 import re
-import context
 from urllib import request
 from utils.utils import is_url,make_url
 from multiprocessing.dummy import Pool as ThreadPool
