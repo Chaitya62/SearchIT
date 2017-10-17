@@ -1,7 +1,5 @@
-import sys
-import os
-sys.path.insert(0,os.getcwd())
-#print(sys.path)
-from spider import *
+# Main File:
+from app.IE.extract import ExtractData
+from app.spider.Spider import Spider
 
-
+# Code Here:
