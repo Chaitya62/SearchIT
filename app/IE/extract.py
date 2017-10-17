@@ -1,5 +1,7 @@
 from  app.spider.Spider import Spider
 from nltk.tokenize import  word_tokenize
+from nltk.corpus import stopwords
+from nltk.tokenize import  word_tokenize
 from bs4 import BeautifulSoup
 from collections import Counter
 import re
@@ -46,6 +48,12 @@ class ExtractData(BeautifulSoup):
 			if re.match(r'(\\x..)+', word): continue
 			self.frequency_data[word]+=1		
 		print(self.frequency_data.most_common(60))
+
+
+def main():
+	url = input("Enter website url : ")
+	spider = Spider(url)
+	data = ExtractData(spider.response)
 
 
 if __name__ == '__main__':
