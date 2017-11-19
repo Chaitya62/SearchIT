@@ -8,7 +8,7 @@ About
 A simple search engine made in python.:: 
 
     print("Hello, World!")
-    >> hello
+    >> Hello, World!
 
 Guide
 ======
