@@ -7,7 +7,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import  word_tokenize
 from bs4 import BeautifulSoup
 
-from  app.spider.Spider import Spider
+from  searchIT.spider.Spider import Spider
 
 
 #move to different file later on
@@ -69,7 +69,7 @@ class ExtractData(BeautifulSoup):
                 continue
             if re.match(r'(\\n)+', word): 
                 continue
-            if re.match(r'(\\x..)+', word): 
+            if re.match(r'(\\x[a-z0-9]{2,})+', word): 
                 continue    
             self.frequency_data[word]+=1
 

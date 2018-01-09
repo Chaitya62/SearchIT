@@ -3,8 +3,8 @@ from os import listdir
 from os.path import isfile, join
 from pprint import pprint
 
-from app.spider.Spider import Spider
-from app.IE.extract import ExtractData
+from searchIT.spider.Spider import Spider
+from searchIT.IE.extract import ExtractData
 
 
 
@@ -78,7 +78,7 @@ class CollectData:
 
 
 def main():
-	cd = CollectData('./app/IE/urls/')
+	cd = CollectData('./searchIT/IE/urls/')
 	cd.get_files()
 	cd.show_all()
 	pprint(cd.get_all())

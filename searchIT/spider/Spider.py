@@ -1,8 +1,9 @@
 import re
 from urllib import request
+from urllib.request import Request
 from multiprocessing.dummy import Pool as ThreadPool
 
-from app.utils.utils import is_url,make_url
+from searchIT.utils.utils import is_url,make_url
 
 class Spider:
 
@@ -12,7 +13,10 @@ class Spider:
         self.response = ''
         self.verbose = verbose
         self.get_domain()
-
+        self.USER_AGENT = '''Mozilla/5.0 
+                             (Macintosh; Intel Mac OS X 10_9_3) 
+                             AppleWebKit/537.75.14 (KHTML, like Gecko) 
+                             Version/7.0.3 Safari/7046A194A'''
         if(self.verbose):
             print("Visiting domain : " + self.domain)
         self.urls = []
@@ -32,7 +36,10 @@ class Spider:
                 print("Visiting {}".format(self.url))
             
             try:
-                response_obj = request.urlopen(self.url)
+                request_obj = Request(self.url)
+                request_obj.add_header('User-Agent',self.USER_AGENT)
+                request_obj.add_header('Content-Type', 'text/html')
+                response_obj = request.urlopen(request_obj)
                 self.response = str(response_obj.read());
                 self.find_urls(str(self.response))
             except Exception as e: 
